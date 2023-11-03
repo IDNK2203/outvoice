@@ -1,0 +1,15 @@
+:root {
+  --primary-color: #7c5dfa;
+  --primary-color-hover: #9277ff;
+  --secondary-color: #1e2139;
+  --secondary-color-hover: #252945;
+  --delete-color: #ec5757;
+  --delete-color-hover: #ff9797;
+  --draft-color: #dfe3fa;
+  --pending-color: #ff8f00;
+  --paid-color: #33d69f;
+  --input-radius: 4px;
+  --btn-radius: 24px;
+  --btn-color: #ffffff;
+  --default-radius: 8px;
+}
