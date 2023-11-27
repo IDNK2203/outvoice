@@ -3,25 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  --primary-color: #7c5dfa;
+  --primary-color-hover: #9277ff;
+  --secondary-color: #1e2139;
+  --secondary-color-hover: #252945;
+  --delete-color: #ec5757;
+  --delete-color-hover: #ff9797;
+  --draft-color: #dfe3fa;
+  --pending-color: #ff8f00;
+  --paid-color: #33d69f;
+  --input-radius: 4px;
+  --btn-radius: 24px;
+  --btn-color: #ffffff;
+  --default-radius: 8px;
 }
