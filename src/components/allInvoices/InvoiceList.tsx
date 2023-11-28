@@ -1,3 +1,16 @@
+"use client";
+import { useInvctxGetState } from "@/context/invoice";
+import InvoiceItem from "./InvoiceItem";
+
 export default function InvoiceList() {
-  return <div>InvoiceList</div>;
+  const invoices = useInvctxGetState().invoices;
+  console.log(invoices);
+
+  return (
+    <section>
+      {invoices?.map((invoice) => (
+        <InvoiceItem invoice={invoice} key={invoice.id} />
+      ))}
+    </section>
+  );
 }

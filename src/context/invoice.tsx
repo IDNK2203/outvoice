@@ -1,17 +1,10 @@
 "use client";
 import { createContext, useReducer, Dispatch, useContext } from "react";
 import invoiceReducer, { invoiceActions } from "./reducers/invoiceReducer";
-import * as Invoices from "../../public/assets/invoice.json";
+import Invoices from "../../public/assets/invoice.json";
 // create content
 
-// export enum TypesPaymentStatus {
-//     paid = "paid",
-//     pending = "pending",
-//     draft = "draft",
-//   }
-
-// export type Status = 'paid' | 'pending' | 'draft';
-
+export type Status = "paid" | "pending" | "draft";
 export interface IAddress {
   street: string;
   city: string;
@@ -68,8 +61,14 @@ export default function InvoiceProvider({ children }: propsI) {
   );
 }
 // create context utility hook
-// get Invoice by ID
 // filter by Status
-export const useInvoiceContextState = () => useContext(invoiceContext).state;
-export const useInvoiceContextDispatch = () =>
-  useContext(invoiceContext).dispatch;
+// get Invoice by ID
+export const useInvctxFilterByStatus = (...status: string[]) => {
+  const invoices = useContext(invoiceContext).state.invoices;
+  return invoices.filter((el) => status.includes(el.status));
+};
+
+export const useInvctxGetById = (id: string) =>
+  useContext(invoiceContext).state.invoices.filter((el) => id === el.id);
+export const useInvctxGetState = () => useContext(invoiceContext).state;
+export const useInvctxGetDispatch = () => useContext(invoiceContext).dispatch;
