@@ -4,7 +4,6 @@ import InvoiceItem from "./InvoiceItem";
 
 export default function InvoiceList() {
   const invoices = useInvctxGetState().invoices;
-  console.log(invoices);
 
   return (
     <section>

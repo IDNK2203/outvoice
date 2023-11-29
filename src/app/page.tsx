@@ -1,8 +1,8 @@
 import InvoiceList from "@/components/allInvoices/InvoiceList";
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className='flex-1 flex h-full flex-col items-center overflow-y-scroll p-24'>
+    <main className='flex-1 flex h-full flex-col items-center overflow-y-scroll p-24 py-16'>
       <div className='w-[760px]'>
         <div className='my-8 flex justify-between'>
           <div>
