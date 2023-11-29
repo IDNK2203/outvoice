@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import InvoiceProvider from "@/context/invoice";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
         className={`${inter.className} flex overflow-hidden min-h-[600px] h-screen`}
       >
         <Sidebar />
-        {children}
+        <InvoiceProvider>{children}</InvoiceProvider>
       </body>
     </html>
   );

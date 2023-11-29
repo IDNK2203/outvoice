@@ -61,14 +61,11 @@ export default function InvoiceProvider({ children }: propsI) {
   );
 }
 // create context utility hook
-// filter by Status
-// get Invoice by ID
 export const useInvctxFilterByStatus = (...status: string[]) => {
   const invoices = useContext(invoiceContext).state.invoices;
   return invoices.filter((el) => status.includes(el.status));
 };
-
 export const useInvctxGetById = (id: string) =>
-  useContext(invoiceContext).state.invoices.filter((el) => id === el.id);
+  useContext(invoiceContext).state.invoices.find((el) => id === el.id);
 export const useInvctxGetState = () => useContext(invoiceContext).state;
 export const useInvctxGetDispatch = () => useContext(invoiceContext).dispatch;
