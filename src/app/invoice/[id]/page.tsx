@@ -1,12 +1,14 @@
 "use client";
 
 import { useInvctxGetById, useInvctxGetDispatch } from "@/context/invoice";
+import { useDeleteModalDispatch } from "@/context/modals/deleteModal";
 import { actionTypes } from "@/context/reducers/invoiceReducer";
 import Link from "next/link";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const invoice = useInvctxGetById(id);
+  const toggleDeleteModal = useDeleteModalDispatch();
   const dispatch = useInvctxGetDispatch();
   const handlePaymentStatusChange = () => {
     dispatch({ type: actionTypes.TOOGLE_STATUS, payload: { id: id } });
@@ -38,7 +40,9 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
           <div className='flex justify-between'>
             <button className='btn mx-4'>Edit</button>
-            <button className='btn bg-red-700'>delete</button>
+            <button className='btn bg-red-700' onClick={toggleDeleteModal}>
+              delete
+            </button>
             {invoice?.status === "pending" && (
               <button
                 onClick={handlePaymentStatusChange}
