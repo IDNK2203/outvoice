@@ -1,9 +1,10 @@
 "use client";
-import { useInvctxGetState } from "@/context/invoice";
+import { IInvoice } from "@/context/invoice";
+// import { useInvctxGetState } from "@/context/invoice";
 import InvoiceItem from "./InvoiceItem";
 
-export default function InvoiceList() {
-  const invoices = useInvctxGetState().invoices;
+export default function InvoiceList({ invoices }: { invoices: IInvoice[] }) {
+  // const invoices = useInvctxGetState().invoices;
 
   return (
     <section>

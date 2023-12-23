@@ -15,7 +15,7 @@ export interface IItem {
   name: string;
   quantity: number;
   price: number;
-  total: number;
+  total?: number;
 }
 
 export interface IInvoice {
@@ -24,13 +24,13 @@ export interface IInvoice {
   status: string;
   paymentDue?: string;
   description?: string;
-  paymentTerms?: number;
+  paymentTerms?: number | string;
   clientName?: string;
   clientEmail?: string;
   senderAddress?: IAddress;
   clientAddress?: IAddress;
   items?: IItem[];
-  total?: number;
+  total: number;
 }
 
 export interface IInvoiceContext {
@@ -61,9 +61,15 @@ export default function InvoiceProvider({ children }: propsI) {
   );
 }
 // create context utility hook
-export const useInvctxFilterByStatus = (...status: string[]) => {
+export const useInvctxFilterByStatus = (status: string[]) => {
+  const status_ = status.find((el) => el === "all")
+    ? ["paid", "pending", "draft"]
+    : status;
+  // const statusList = ["paid", "pending", "draft"];
+  console.log(status);
+
   const invoices = useContext(invoiceContext).state.invoices;
-  return invoices.filter((el) => status.includes(el.status));
+  return invoices.filter((el) => status_.includes(el.status));
 };
 export const useInvctxGetById = (id: string) =>
   useContext(invoiceContext).state.invoices.find((el) => id === el.id);

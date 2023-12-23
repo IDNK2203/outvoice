@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import InvoiceProvider from "@/context/invoice";
+import CreateModalProvider from "@/context/modals/createModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
         className={`${inter.className} flex overflow-hidden min-h-[600px] h-screen`}
       >
         <Sidebar />
-        <InvoiceProvider>{children}</InvoiceProvider>
+        <InvoiceProvider>
+          <CreateModalProvider>{children}</CreateModalProvider>
+        </InvoiceProvider>
       </body>
     </html>
   );

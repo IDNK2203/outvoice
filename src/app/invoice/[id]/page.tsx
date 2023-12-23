@@ -2,6 +2,7 @@
 
 import { useInvctxGetById, useInvctxGetDispatch } from "@/context/invoice";
 import { useDeleteModalDispatch } from "@/context/modals/deleteModal";
+import { useEditModalDispatch } from "@/context/modals/editModal";
 import { actionTypes } from "@/context/reducers/invoiceReducer";
 import Link from "next/link";
 
@@ -9,6 +10,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const invoice = useInvctxGetById(id);
   const toggleDeleteModal = useDeleteModalDispatch();
+  const toggleEditModal = useEditModalDispatch();
   const dispatch = useInvctxGetDispatch();
   const handlePaymentStatusChange = () => {
     dispatch({ type: actionTypes.TOOGLE_STATUS, payload: { id: id } });
@@ -25,7 +27,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main className='flex-1 flex h-full flex-col items-center overflow-y-scroll p-24 py-16'>
+    <main className='flex-1 flex h-full flex-col items-center overflow-y-scroll p-24 py-16 '>
       <div className='w-[760px]'>
         <section className='my-2 mb-8'>
           <Link href={"/"}>
@@ -39,7 +41,9 @@ export default function Page({ params }: { params: { id: string } }) {
             <p className='mx-4'>{invoice?.status}</p>
           </div>
           <div className='flex justify-between'>
-            <button className='btn mx-4'>Edit</button>
+            <button className='btn mx-4' onClick={toggleEditModal}>
+              Edit
+            </button>
             <button className='btn bg-red-700' onClick={toggleDeleteModal}>
               delete
             </button>

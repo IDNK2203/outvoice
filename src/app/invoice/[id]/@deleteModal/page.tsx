@@ -14,8 +14,20 @@ export default function Page() {
     dispatch({ type: actionTypes.DELETE, payload: { id: id } });
     router.back();
   };
+
+  const toggleDeleteModalWrapper = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    if ((event.target as HTMLElement)?.id === "deleteModal") {
+      toggleDeleteModal();
+    }
+  };
   return (
-    <section className=' flex z-10 absolute backdrop-opacity-10 h-full w-full left-0 top-0 items-center justify-center '>
+    <section
+      id='deleteModal'
+      className='flex z-10 absolute bg-black/50 h-full w-full left-0 top-0 items-center justify-center'
+      onClick={toggleDeleteModalWrapper}
+    >
       <div className='w-96 bg-slate-900 p-10 rounded-lg'>
         <h3 className='font-bold text-3xl mb-4'> Confirm Deletion</h3>
         <p className='my-4'>
