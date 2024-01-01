@@ -32,8 +32,8 @@ export default function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main className='flex-1 flex h-full flex-col items-center overflow-y-scroll  md:p-24 pt-16 md:py-16 bg-[--primary_bg] text-[--primary_fg]'>
-      <div className='w-full max-w-3xl px-4'>
+    <main className='flex-1 flex min-h-screen h-full flex-col items-center overflow-y-scroll pt-6 pb-20  md:p-24 md:py-16 bg-[--primary_bg] text-[--primary_fg]'>
+      <div className='w-full max-w-3xl px-4 mb-20 md:my-2'>
         <section className='my-2 mb-8'>
           <Link href={"/"} className='flex items-center'>
             <div className=' w-8'>
@@ -73,7 +73,7 @@ export default function Page({ params }: { params: { id: string } }) {
             )}
           </div>
         </section>
-        <section className='flex flex-col justify-between rounded-md p-8 my-2 mb-4 bg-[--secondary_bg_700]'>
+        <section className='flex flex-col justify-between rounded-md px-4 p-8 md:p-8 my-2 mb-4 bg-[--secondary_bg_700]'>
           <div className='flex flex-col  md:flex-row justify-between items-start'>
             <div className='flex flex-col'>
               <p>
@@ -189,7 +189,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         </section>
       </div>
-      <section className='w-full md:hidden p-4 bg-[--secondary_bg_700]'>
+      <section className='w-full fixed bottom-0 z-10 md:hidden p-4 bg-[--secondary_bg_700] mt-2'>
         <div className='flex justify-center '>
           <Cbutton
             funcHandler={toggleEditModal}
