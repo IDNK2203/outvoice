@@ -1,12 +1,7 @@
-export default function fixDateFormat(
-  originalDate: string
-): string | undefined {
+export default function fixDateFormat(originalDate: string): string {
   // Try to parse the original date
   const parsedDate = new Date(originalDate || Date.now());
 
-  // Check if the parsed date is valid
-  // if (!isNaN(parsedDate.getTime())) {
-  // Get the components of the date
   const year = parsedDate.getFullYear();
   const month = parsedDate.getMonth() + 1; // Months are zero-based
   const day = parsedDate.getDate();
@@ -17,8 +12,4 @@ export default function fixDateFormat(
     .padStart(2, "0")}`;
 
   return fixedDate;
-  // } else {
-  // Return null if the original date is not valid
-  //   return undefined;
-  // }
 }

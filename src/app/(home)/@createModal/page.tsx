@@ -4,15 +4,21 @@ import { IInvoice, IItem, useInvctxGetDispatch } from "@/context/invoice";
 import { DateTime } from "luxon";
 import { generateRandomId } from "@/utils/InvoiceForm";
 import { actionTypes } from "@/context/reducers/invoiceReducer";
-import { useCreateModalDispatch } from "@/context/modals/createModal";
+import {
+  useCreateModalDispatch,
+  useCreateModalState,
+} from "@/context/modals/createModal";
+import fixDateFormat from "@/utils/dateFix";
+import clsx from "clsx";
 
 export default function Page() {
   const invoiceDispatch = useInvctxGetDispatch();
   const toggleCreateModal = useCreateModalDispatch();
+  const createModalToggle = useCreateModalState();
 
   const defaultInvoice = {
     id: "",
-    createdAt: "",
+    createdAt: new Date(Date.now()).toLocaleDateString(),
     paymentDue: "",
     description: "",
     paymentTerms: "",
@@ -47,14 +53,15 @@ export default function Page() {
     const transformedValues = omittedFormSchema.safeParse(values);
 
     if (transformedValues.success) {
-      const paymentDue =
-        DateTime.fromISO(values.createdAt)
-          .plus({ days: values?.paymentTerms as number })
-          .toISODate() || Date.now().toLocaleString();
+      const fixedCreatedAtDate = fixDateFormat(values.createdAt);
 
-      const createdAt =
-        DateTime.fromISO(values.createdAt).toISODate() ||
-        Date.now().toLocaleString();
+      const createdAt = DateTime.fromISO(
+        fixedCreatedAtDate
+      ).toISODate() as string;
+
+      const paymentDue = DateTime.fromISO(fixedCreatedAtDate)
+        .plus({ days: values?.paymentTerms as number })
+        .toISODate() as string;
 
       const items = transformedValues?.data?.items.map((el: any) => ({
         ...el,
@@ -89,8 +96,10 @@ export default function Page() {
     }
   };
   const handleCreateFormDraft = (values: IInvoice) => {
+    const fixedCreatedAtDate = fixDateFormat(values.createdAt);
+
     const createdAt = DateTime.fromISO(
-      values.createdAt || new Date(Date.now()).toISOString()
+      fixedCreatedAtDate
     ).toISODate() as string;
 
     const transformedFormValues = {
@@ -108,10 +117,17 @@ export default function Page() {
   return (
     <section
       id='CreateModal'
-      className='flex z-10 absolute h-full w-full left-24 top-0 justify-start bg-black/50'
+      className={clsx(
+        "flex z-20 absolute h-full w-full md:max-w-3xl left-0 lg:left-24 top-0 justify-start overflow-hidden bg-black/90 transition-transform delay-300	 duration-300 ease-in-out",
+        !createModalToggle ? "-translate-x-[1440px]" : "translate-x-[0px]"
+      )}
       onClick={toggleCreateModalWrapper}
     >
-      <div className='min-w-[720px] w-1/2 h-full p-8 bg-slate-900 overflow-y-scroll'>
+      <div
+        className={clsx(
+          "w-full h-full py-8 px-4 md:p-8 bg-[--primary_bg] overflow-hidden "
+        )}
+      >
         <Form
           draftFormHandler={handleCreateFormDraft}
           invoice={defaultInvoice}

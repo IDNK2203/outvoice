@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import chevronDown from "../../../public/assets/icon-arrow-down.svg";
 
 type InputObject = {
   [key: string]: any;
@@ -20,8 +22,6 @@ export default function StatusDropdown() {
   });
 
   function handleStatusChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log({ [e.target.name]: e.target.value });
-
     setIstatus((status) => {
       return {
         ...status,
@@ -29,6 +29,9 @@ export default function StatusDropdown() {
       };
     });
   }
+
+  const dropdownData = ["all", "paid", "pending", "draft"];
+  // "checked:border-indigo-800 [--chkbg:theme(colors.indigo.600)] [--chkfg:orange]"
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
@@ -38,68 +41,43 @@ export default function StatusDropdown() {
   }, [Istatus, replace, pathname, searchParams]);
   return (
     <div>
-      <details className='dropdown'>
-        <summary className='m-1 btn btn-ghost'>Filter by status</summary>
-        <ul className='p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52'>
-          <li>
-            <div className='form-control'>
-              <label className='label cursor-pointer'>
-                <input
-                  type='checkbox'
-                  name='all'
-                  checked={Istatus.all}
-                  onChange={handleStatusChange}
-                  className='checkbox'
-                />
-                <span className='label-text'>All </span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className='form-control'>
-              <label className='label cursor-pointer'>
-                <input
-                  type='checkbox'
-                  name='paid'
-                  checked={Istatus.paid}
-                  onChange={handleStatusChange}
-                  className='checkbox'
-                />
-                <span className='label-text'>Paid</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className='form-control'>
-              <label className='label cursor-pointer'>
-                <input
-                  type='checkbox'
-                  checked={Istatus.pending}
-                  name='pending'
-                  value={"pending"}
-                  onChange={handleStatusChange}
-                  className='checkbox'
-                />
-                <span className='label-text'>Pending</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className='form-control'>
-              <label className='label cursor-pointer'>
-                <input
-                  type='checkbox'
-                  checked={Istatus.draft}
-                  name='draft'
-                  onChange={handleStatusChange}
-                  className='checkbox'
-                />
-                <span className='label-text'>Draft</span>
-              </label>
-            </div>
-          </li>
+      <div className='dropdown dropdown-hover group'>
+        <div
+          tabIndex={0}
+          role='button'
+          className='btn btn-ghost my-1 md:m-1 px-2 md:px-4 text-[--primary_fg]'
+        >
+          Filter by status
+          <Image
+            className=' transition origin-center group-hover:rotate-180'
+            src={chevronDown}
+            alt='Arrow Indicator'
+          />
+        </div>
+        <ul
+          tabIndex={0}
+          className='p-2 shadow menu bg-[--secondary_bg_700] dropdown-content z-[1] rounded-md w-52'
+        >
+          {dropdownData.map((status) => (
+            <li key={status}>
+              <div className='form-control py-0 hover:bg-inherit active:bg-inherit focus:bg-inherit'>
+                <label className='label cursor-pointer'>
+                  <input
+                    type='checkbox'
+                    name={status}
+                    checked={Istatus[`${status}`]}
+                    onChange={handleStatusChange}
+                    className='checkbox checkbox-sm rounded-none hover:border-accent [--chkbg:theme(colors.accent)] [--chkfg:white]'
+                  />
+                  <span className='label-text mx-4 font-bold text-[--primary_fg] capitalize'>
+                    {status}{" "}
+                  </span>
+                </label>
+              </div>
+            </li>
+          ))}
         </ul>
-      </details>
+      </div>
     </div>
   );
 }

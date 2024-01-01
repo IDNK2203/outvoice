@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useReducer, Dispatch, useContext } from "react";
 import invoiceReducer, { invoiceActions } from "./reducers/invoiceReducer";
-import Invoices from "../../public/assets/invoice.json";
+import Invoices from "../../public/assets/data/invoice.json";
 // create content
 
 export type Status = "paid" | "pending" | "draft";
@@ -65,8 +65,6 @@ export const useInvctxFilterByStatus = (status: string[]) => {
   const status_ = status.find((el) => el === "all")
     ? ["paid", "pending", "draft"]
     : status;
-  // const statusList = ["paid", "pending", "draft"];
-  console.log(status);
 
   const invoices = useContext(invoiceContext).state.invoices;
   return invoices.filter((el) => status_.includes(el.status));

@@ -8,12 +8,11 @@ export default function Layout(props: {
   editModal: React.ReactNode;
 }) {
   const deleteModalToggle = useDeleteModalState();
-  const editModalToggle = useEditModalState();
   return (
     <>
       {props.children}
       {deleteModalToggle && props.deleteModal}
-      {editModalToggle && props.editModal}
+      {props.editModal}
     </>
   );
 }

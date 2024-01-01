@@ -11,7 +11,7 @@ export default function Layout(props: {
   return (
     <>
       {props.children}
-      {createModalToggle && props.createModal}
+      {props.createModal}
     </>
   );
 }

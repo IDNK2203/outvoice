@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import InvoiceProvider from "@/context/invoice";
 import CreateModalProvider from "@/context/modals/createModal";
-
-const inter = Inter({ subsets: ["latin"] });
+import ThemeProvider from "@/context/Theme";
+import { leagueSpartan } from "@/utils/font";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,15 +16,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  //
   return (
-    <html lang='en'>
-      <body
-        className={`${inter.className} flex overflow-hidden min-h-[600px] h-screen`}
-      >
-        <Sidebar />
-        <InvoiceProvider>
-          <CreateModalProvider>{children}</CreateModalProvider>
-        </InvoiceProvider>
+    <html lang='en' className={`${leagueSpartan.variable}`}>
+      <body className='overflow-hidden'>
+        <ThemeProvider>
+          <div
+            className={`font-lSpartan flex flex-col lg:flex-row min-h-[600px] h-screen overflow-hidden`}
+          >
+            <Sidebar />
+            <InvoiceProvider>
+              <CreateModalProvider>{children}</CreateModalProvider>
+            </InvoiceProvider>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

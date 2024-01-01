@@ -9,6 +9,9 @@ export function handleAddNewLineItem(push: any) {
     total: 0,
   });
 }
+export function formatNumberWithCommas(amount: number | string) {
+  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 export function generateRandomId(): string {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
