@@ -22,7 +22,7 @@ function Tbar({ theme, toggleTheme }: { theme: any; toggleTheme: () => void }) {
   return (
     <div
       data-theme={"dark"}
-      className='h-16 justify-between flex  bg-[--secondary_bg_500] lg:hidden'
+      className='min-h-[64px] justify-between flex  bg-[--secondary_bg_500] lg:hidden'
     >
       <div className='h-full w-16 p-4 bg-accent flex items-center justify-center rounded-r-2xl relative group'>
         <div className='w-full rounded-r-2xl h-8 absolute bottom-0 left-0 bg-white opacity-20 group-hover:h-14 transition-h duration-300 z-10'></div>

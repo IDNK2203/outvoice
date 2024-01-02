@@ -16,7 +16,7 @@ export default function Page({
   const toggleCreateModal = useCreateModalDispatch();
 
   return (
-    <main className='flex-1 flex h-full flex-col items-center py-8 pb-16 md:p-24 sm:py-16 bg-[--primary_bg] overflow-y-scroll'>
+    <main className='flex-1 flex min-h-full flex-col items-center py-8 pb-16 md:p-24 sm:py-16 bg-[--primary_bg] overflow-y-scroll'>
       <div className='w-full max-w-3xl px-4'>
         <div className='my-8 flex justify-between'>
           <div className='text-[--primary_fg]'>
@@ -37,7 +37,7 @@ export default function Page({
               <Cbutton
                 funcHandler={toggleCreateModal}
                 type='primary'
-                classes='justify-between items-center px-2 sm:pl-2 md:w-[150px]'
+                classes='justify-between items-center px-2 md:pl-2 md:pr-4 md:w-[150px]'
               >
                 <span className='h-8 w-8 relative rounded-full bg-white'>
                   <svg
@@ -59,9 +59,7 @@ export default function Page({
             </div>
           </div>
         </div>
-        <div>
-          <InvoiceList invoices={filteredInvoices} />
-        </div>
+        <InvoiceList invoices={filteredInvoices} />
       </div>
     </main>
   );
