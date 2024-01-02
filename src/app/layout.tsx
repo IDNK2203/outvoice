@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className='overflow-hidden'>
         <ThemeProvider>
           <div
-            className={`font-lSpartan flex flex-col lg:flex-row min-h-[600px] h-screen overflow-hidden`}
+            className={`font-lSpartan flex flex-col lg:flex-row h-screen overflow-hidden`}
           >
             <Sidebar />
             <InvoiceProvider>

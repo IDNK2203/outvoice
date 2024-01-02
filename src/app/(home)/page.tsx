@@ -16,7 +16,7 @@ export default function Page({
   const toggleCreateModal = useCreateModalDispatch();
 
   return (
-    <main className='flex-1 flex min-h-full flex-col items-center py-8 pb-16 md:p-24 sm:py-16 bg-[--primary_bg] overflow-y-scroll'>
+    <main className='flex-1 flex h-full flex-col items-center py-8 md:p-24 sm:py-16 bg-[--primary_bg] overflow-y-scroll'>
       <div className='w-full max-w-3xl px-4'>
         <div className='my-8 flex justify-between'>
           <div className='text-[--primary_fg]'>
