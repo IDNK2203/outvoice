@@ -32,8 +32,8 @@ export default function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main className='flex-1 flex min-h-screen h-full flex-col items-center overflow-y-scroll pt-6 pb-20  md:p-24 md:py-16 bg-[--primary_bg] text-[--primary_fg]'>
-      <div className='w-full max-w-3xl px-4 mb-20 md:my-2'>
+    <main className='flex-1 flex min-h-screen h-full flex-col items-center overflow-y-scroll pt-6 pb-24  md:p-24 md:py-16 bg-[--primary_bg] text-[--primary_fg]'>
+      <div className='w-full max-w-3xl px-4 mb-28 md:my-2'>
         <section className='my-2 mb-8'>
           <Link href={"/"} className='flex items-center'>
             <div className=' w-8'>
